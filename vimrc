@@ -10,7 +10,8 @@
       set fileencoding=utf-8
       set fileencodings=ucs-bom,utf8,prc;
       
-
+      set clipboard=unnamedplus
+      "set clipboard=unnamed
  
       "cursor no blinking
       set guicursor+=a:blinkon0 
@@ -26,8 +27,8 @@
       set hlsearch
       set smartcase
       set ignorecase
-      set incsearch " Searches for strings as you type
-      
+      set incsearch " 
+
       set noswapfile 
       set nobackup
       
@@ -38,13 +39,37 @@
       set scrolloff=999 
       " remove toolbar
       set guioptions-=T
-      
+     
+      " for autoselect: automatically copy visual selection
+      set guioptions+=a
+      set clipboard+=autoselect
+      " set clipboard=unnamedplus
+      "set clipboard=unnamed
+
+
+
+     " searches cword + repeat to go to next!
+     " nnoremap s g*:let @+=@/<cr><c-l>
+     "search cword (*); repeat mapping to advance
+     " nnoremap s *:let @+=@/[2:-3]<cr><c-l>  
+     "select cword
+     nnoremap s viw
+
+
+    "remap redo
+     nnoremap U <c-r>
+
+     "reformat paragraph; don't change cursor position
+     nnoremap q <gwap>
+
+
+
       " Keep search in the middle of the screen
       nnoremap n nzzzv
       nnoremap N Nzzzv
       
       
-      inoremap jf <Esc>
+     inoremap jf <Esc>
      inoremap <A-u> <C-w>
      inoremap <A-i> <Esc>lciW
      inoremap <A-o> <C-o>b
@@ -89,10 +114,25 @@ call plug#end()
 
 
 vnoremap <leader>g "gy<Esc>:call GoogleSearch()<CR>
+nnoremap <leader>g "gy<Esc>:call GoogleSearch()<CR>
+
+vnoremap <leader>d "gy<Esc>:call DictionarySearch()<CR>
+nnoremap <leader>d "gy<Esc>:call DictionarySearch()<CR>
+
 vnoremap <leader>w "gy<Esc>:call WordRefSearch()<CR>
+nnoremap <leader>w "gy<Esc>:call WordRefSearch()<CR>
+
 vnoremap <leader>; "gy<Esc>:call ThesaurusSearch()<CR>
+nnoremap <leader>; "gy<Esc>:call ThesaurusSearch()<CR>
+
 vnoremap <leader>l "gy<Esc>:call LingueeSearch()<CR>
+nnoremap <leader>l "gy<Esc>:call LingueeSearch()<CR>
+
+
 vnoremap <leader>lt "gy<Esc>:call LittreSearch()<CR>
+nnoremap <leader>lt "gy<Esc>:call LittreSearch()<CR>
+
+vnoremap <leader>t "gy<Esc>:call TermiumSearch()<CR>
 vnoremap <leader>t "gy<Esc>:call TermiumSearch()<CR>
 
 
@@ -100,6 +140,11 @@ vnoremap <leader>t "gy<Esc>:call TermiumSearch()<CR>
 function! GoogleSearch()
      let searchterm = getreg("g")
      silent! exec "silent! !chromium \"http://google.com/search?q=" . searchterm . "\" &"
+endfunction
+
+function! DictionarySearch()
+     let searchterm = getreg("g")
+     silent! exec "silent! !chromium \"http://dictionary.com/browse/" . searchterm . "\" &"
 endfunction
 
 function! WordRefSearch()
