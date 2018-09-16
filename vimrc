@@ -131,6 +131,12 @@ nnoremap <silent> <F4> :redir >>~/Dropbox/ben/matches.txt<CR>:g//<CR>:redir END<
 
 nnoremap <F11> <Esc>:call ToggleGUICruft()<cr>
 
+" redirect commands (but !grep is better)
+" source: http://vim.wikia.com/wiki/Redirect_g_search_output
+
+command! -nargs=? Filter let @a='' | execute 'g/<args>/y A' | new | setlocal bt=nofile | put! a
+nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:new<CR>:put! a<CR>
+nnoremap <silent> <F4> :redir >>matches.tmp<CR>:g//<CR>:redir END<CR>:new matches.tmp<CR>
 
 
 vnoremap <leader>g "gy<Esc>:call GoogleSearch()<CR>
