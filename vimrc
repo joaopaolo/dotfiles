@@ -115,17 +115,6 @@ Plug 'morhetz/gruvbox'
 
 call plug#end()
 
-" Commands for grepping examples of words (but !grep is better)
-
-" Global search in file; opens in new "scratch" window
-command! -nargs=? Filter let @a='' | execute 'g/<args>/y A'| i~/Dropbox/ben/matches.txt | put! a
-
-" Redirect global search in file to new window
-nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:new<CR>:put! a<CR>
-
-" Redirect global search in file to new file
-nnoremap <silent> <F4> :redir >>~/Dropbox/ben/matches.txt<CR>:g//<CR>:redir END<CR>:new matches.txt<CR>
-
 
 " hide menus and tabs
 
