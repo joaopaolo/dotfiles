@@ -74,7 +74,7 @@
       
      inoremap jf <Esc>
      inoremap <A-u> <C-w>
-     inoremap <A-i> <Esc>lciW
+     inoremap <A-i> <Esc>dt<Space>i
      inoremap <A-o> <C-o>b
      inoremap <A-p> <C-o>w
      inoremap <A-j> <C-o>j
