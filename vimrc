@@ -16,6 +16,9 @@
       "cursor no blinking
       set guicursor+=a:blinkon0 
       
+      "automatically set working directory to current directory
+      set autochdir
+      
       " hard wrap
       set formatoptions=t1
       
