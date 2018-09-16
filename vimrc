@@ -86,7 +86,8 @@
       
       nnoremap ; :
       
-      
+      "Both quotation marks at once, for writing dialogue
+      inoremap <F11> ""<Left>
       
       
       let mapleader = "\<Space>"
@@ -103,14 +104,33 @@ Plug 'junegunn/fzf'
 Plug 'reedes/vim-pencil'
 Plug 'reedes/vim-colors-pencil'
 Plug 'junegunn/goyo.vim'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'tpope/vim-markdown'
+" Plug 'vim-pandoc/vim-pandoc'
+" Plug 'tpope/vim-markdown'
 
 "Colorschemes
 Plug 'mhartington/oceanic-next'
 Plug 'arcticicestudio/nord-vim'
 Plug 'kamwitsta/dutch_peasants'
+Plug 'morhetz/gruvbox'
+
 call plug#end()
+
+" Commands for grepping examples of words (but !grep is better)
+
+" Global search in file; opens in new "scratch" window
+command! -nargs=? Filter let @a='' | execute 'g/<args>/y A'| i~/Dropbox/ben/matches.txt | put! a
+
+" Redirect global search in file to new window
+nnoremap <silent> <F3> :redir @a<CR>:g//<CR>:redir END<CR>:new<CR>:put! a<CR>
+
+" Redirect global search in file to new file
+nnoremap <silent> <F4> :redir >>~/Dropbox/ben/matches.txt<CR>:g//<CR>:redir END<CR>:new matches.txt<CR>
+
+
+" hide menus and tabs
+
+nnoremap <F11> <Esc>:call ToggleGUICruft()<cr>
+
 
 
 vnoremap <leader>g "gy<Esc>:call GoogleSearch()<CR>
@@ -134,6 +154,18 @@ nnoremap <leader>lt "gy<Esc>:call LittreSearch()<CR>
 
 vnoremap <leader>t "gy<Esc>:call TermiumSearch()<CR>
 vnoremap <leader>t "gy<Esc>:call TermiumSearch()<CR>
+
+function! ToggleGUICruft()
+  if &guioptions=='i'
+    exec('set guioptions=imTrL')
+  else
+    exec('set guioptions=i')
+  endif
+endfunction
+
+" by default, hide gui menus
+set guioptions=i
+
 
 
  
