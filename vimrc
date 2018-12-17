@@ -115,7 +115,7 @@ Plug 'mhartington/oceanic-next'
 Plug 'arcticicestudio/nord-vim'
 Plug 'kamwitsta/dutch_peasants'
 Plug 'morhetz/gruvbox'
-
+Plug 'rodnaph/vim-color-schemes'
 call plug#end()
 
 
